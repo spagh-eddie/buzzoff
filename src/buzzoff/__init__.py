@@ -1,3 +1,5 @@
+"""buzzoff: word generation"""
+
 __all__ = ["__version__", "words", "buzz"]
 __version__ = "1.0.0"
 

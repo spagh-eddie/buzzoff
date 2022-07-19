@@ -4,6 +4,7 @@ import argparse
 
 
 def main() -> None:
+    """Run the CLI"""
     parser = argparse.ArgumentParser(prog="buzzoff")
     parser.add_argument("letters", help="the set of letters")
     parser.add_argument(

@@ -31,3 +31,12 @@ def test_no_three_letter_by_default() -> None:
     assert "at" not in words
     assert "tub" not in words
     assert "tuba" in words
+
+
+def test_three_letter_if_ask() -> None:
+    """Three letter words are accepted if ask for them"""
+    words = run("-l", "3", "abcdtuv")
+    assert "a" not in words
+    assert "at" not in words
+    assert "tub" in words
+    assert "tuba" in words

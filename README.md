@@ -6,5 +6,4 @@ Pinky promise.
 
 ## Installation
 
-This project will install the `pyenchant` python package if you request it with `python -m pip install buzzoff[pyenchant]`.
-However, you will still need to follow [pyenchant's guide](https://pyenchant.github.io/pyenchant/install.html) on how to install the C library `enchant`.
+Install this project with `python -m pip install buzzoff`.

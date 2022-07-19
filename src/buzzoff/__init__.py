@@ -22,5 +22,5 @@ def buzz(
     s = set(letters)
     filters = [lambda w: len(w) >= minlength, s.issuperset]
     if mandatory:
-        filters.insert(0, lambda w: all(c in w for c in mandatory))
+        filters.insert(0, lambda w: all(c in w for c in mandatory))  # type: ignore[union-attr]
     return filter(lambda w: all(f(w) for f in filters), words)

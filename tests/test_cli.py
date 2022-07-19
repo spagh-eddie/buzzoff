@@ -26,8 +26,8 @@ def test_simple() -> None:
 
 def test_no_three_letter_by_default() -> None:
     """Three letter words or under are not accepted by default"""
-    words = run("abcdstu")
+    words = run("abcdtuv")
     assert "a" not in words
     assert "at" not in words
-    assert "bat" not in words
-    assert "bats" in words
+    assert "tub" not in words
+    assert "tuba" in words

@@ -19,7 +19,7 @@ jobs:
           python -m pip install .
       - name: run pylint
         # may pin to the exact commit or version.
-        uses: pre-commit/action@v2.0.3
+        uses: pre-commit/action@v3.0.0
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
   mypy:

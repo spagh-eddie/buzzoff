@@ -1,7 +1,7 @@
 """buzzoff: word generation"""
 
 __all__ = ["__version__", "words", "buzz"]
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 from collections.abc import Iterable, Iterator
 

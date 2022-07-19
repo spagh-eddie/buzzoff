@@ -1,0 +1,59 @@
+name: repo-jobs
+on: [workflow_dispatch, push]
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
+      - name: install
+        run: |
+          python -m pip install -r requirements-test.txt
+          python -m pip install .
+      - name: run pylint
+        run: python -m pylint src tests
+  mypy:
+    name: mypy
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: "**/requirements*.txt"
+      - name: install requirements
+        run: python -m pip install -r requirements-test.txt
+      - name: add mypy annotator
+        uses: pr-annotators/mypy-pr-annotator@v1.0.0
+      - name: run mypy
+        # the PR annotator regex does not catch "file.py:29:1:"
+        run: mypy . --hide-column-numbers
+  pytest:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
+      - name: install
+        run: |
+          sudo apt-get install wamerican
+          python -m pip install -r requirements-test.txt
+          python -m pip install .
+      - name: run pytest
+        run: python -m pytest

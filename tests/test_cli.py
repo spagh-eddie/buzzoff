@@ -22,3 +22,12 @@ def test_simple() -> None:
     words = run("abcdefg")
     assert "deaf" in words
     assert "hello" not in words
+
+
+def test_no_three_letter_by_default() -> None:
+    """Three letter words or under are not accepted by default"""
+    words = run("abcdstu")
+    assert "a" not in words
+    assert "at" not in words
+    assert "bat" not in words
+    assert "bats" in words

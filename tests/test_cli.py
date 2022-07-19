@@ -1,9 +1,20 @@
 """Test the CLI"""
 
+import subprocess
+import sys
+
 
 def run(*args: str) -> list[str]:
     """Return the words output by running the CLI with arguments ``args``"""
-    raise NotImplementedError()
+    return (
+        subprocess.run(
+            [sys.executable, "-m", "buzzoff", *args],
+            capture_output=True,
+            check=True,
+        )
+        .stdout.decode()
+        .splitlines()
+    )
 
 
 def test_simple() -> None:

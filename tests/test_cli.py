@@ -40,3 +40,22 @@ def test_three_letter_if_ask() -> None:
     assert "at" not in words
     assert "tub" in words
     assert "tuba" in words
+
+
+def test_mandatory_letter() -> None:
+    """Mandatory letters are mandatory"""
+    words = run("yaehlpt")
+    assert "alley" in words
+    assert "heal" in words
+
+    words = run("-m", "y", "yaehlpt")
+    assert "alley" in words
+    assert "heal" not in words
+
+
+def test_mandatory_letters() -> None:
+    """Multiple letters can be mandatory"""
+    words = run("-m", "yp", "yaehlpt")
+    assert "alley" not in words
+    assert "heal" not in words
+    assert "apathy" in words

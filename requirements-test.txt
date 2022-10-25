@@ -1,4 +1,4 @@
 isort==5.10.1
 mypy==0.982
-pylint==2.15
+pylint==2.15.5
 pytest==7.1.3

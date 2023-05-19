@@ -1,27 +1,19 @@
 """Buzzoff command line tool."""
 
-import argparse
+import click
 
 
-def main() -> None:
-    """Run the CLI"""
-    parser = argparse.ArgumentParser(
-        prog="buzzoff", formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
-    parser.add_argument("letters", help="the set of letters")
-    parser.add_argument("-m", "--mandatory", help="mandatory letter(s)")
-    parser.add_argument(
-        "-l", "--length", type=int, default=4, help="minimum word length"
-    )
-    args = parser.parse_args()
-
+@click.command
+@click.option("-l", "--length", type=int, default=4, help="minimum word length")
+@click.option("-m", "--mandatory", help="mandatory letter(s)")
+@click.argument("letters")
+def cli(letters, length: int, mandatory) -> None:
+    """Buzz off"""
     # import inside function to speed up CLI parsing
     from buzzoff import buzz  # pylint: disable=import-outside-toplevel)
 
-    print(
-        "\n".join(buzz(args.letters, minlength=args.length, mandatory=args.mandatory))
-    )
+    print("\n".join(buzz(letters, minlength=length, mandatory=mandatory)))
 
 
 if __name__ == "__main__":
-    main()
+    cli()

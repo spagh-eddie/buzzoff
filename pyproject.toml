@@ -1,27 +1,37 @@
-# build options:
-
 [build-system]
 requires = [
     "setuptools>=46.4",  # for "attr:" directive
+    "setuptools_scm[toml]>=6.2",
     "wheel",
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "buzzoff"
+requires-python = ">=3.7"  # for sorted dicts
+dependencies = [
+    "click",
+]
+dynamic = ["version"]
 
-# black options:
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "mypy",
+    "pylint",
+    "pytest",
+]
+
+[tool.setuptools_scm]
+write_to = "src/buzzoff/_version.py"
 
 [tool.black]
 target-version = ["py310"]
 
-
-# isort options:
-
 [tool.isort]
 profile = "black"
 force_alphabetical_sort_within_sections = true
-
-
-# mypy global options:
 
 [tool.mypy]
 python_version = "3.10"
@@ -34,9 +44,6 @@ warn_redundant_casts = true
 warn_unused_configs = true
 warn_unused_ignores = true
 warn_unreachable = true
-
-
-# pylint options:
 
 [tool.pylint.master]
 # A comma-separated list of package or module names from where C extensions may
@@ -82,7 +89,6 @@ load-plugins = [
     "pylint.extensions.typing",
 ]
 
-
 [tool.pylint.messages_control]
 disable = [
     "invalid-name",
@@ -104,22 +110,6 @@ enable = [
     "useless-suppression",
 ]
 
-[tool.pylint.reports]
-# Python expression which should return a score less than or equal to 10. You
-# have access to the variables 'error', 'warning', 'refactor', and 'convention'
-# which contain the number of messages in each category, as well as 'statement'
-# which is the total number of statements analyzed. This score is used by the
-# global evaluation report (RP0004).
-evaluation = "10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)"
-# Set the output format. Available formats are text, parseable, colorized, JSON
-# and msvs (visual studio). You can also give a reporter class, e.g.
-# mypackage.mymodule.MyReporterClass.
-output-format = "text"
-# Tells whether to display a full report or only the messages.
-reports = "no"
-# Activate the evaluation score.
-score = "yes"
-#
 [tool.pylint.refactoring]
 # Maximum number of nested blocks for function / method body
 max-nested-blocks = 5
@@ -214,7 +204,7 @@ callbacks = ["cb_", "_cb"]
 dummy-variables-rgx = '_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)|dummy|^ignored_|^unused_'
 # Argument names that match this expression will be ignored. Default to name
 # with leading underscore.
-ignored-argument-names = '_.*|^ignored_|^unused_|event_data'
+ignored-argument-names = '_.*|^ignored_|^unused_'
 # Tells whether we should check for unused import in __init__ files.
 init-import = "no"
 # List of qualified module names which can have objects that can redefine
@@ -263,15 +253,6 @@ min-similarity-lines = 4
 argument-naming-style = "snake_case"
 # Naming style matching correct attribute names.
 attr-naming-style = "snake_case"
-# Bad variable names which should always be refused, separated by a comma.
-bad-names = [
-    "foo",
-    "bar",
-    "baz",
-    "toto",
-    "tutu",
-    "tata",
-]
 # Naming style matching correct class attribute names.
 class-attribute-naming-style = "any"
 # Naming style matching correct class constant names.
@@ -285,15 +266,6 @@ const-naming-style = "UPPER_CASE"
 docstring-min-length = -1
 # Naming style matching correct function names.
 function-naming-style = "camelCase"
-# Good variable names which should always be accepted, separated by a comma.
-good-names = [
-    "i",
-    "j",
-    "k",
-    "ex",
-    "Run",
-    "_",
-]
 # Include a hint for the correct naming format with invalid-name.
 include-naming-hint = "no"
 # Naming style matching correct inline iteration names.
@@ -384,7 +356,6 @@ overgeneral-exceptions = ["BaseException", "Exception"]
 
 [tool.pylint.broad_try_clause]
 max-try-statements = 3
-
 
 [tool.pytest.ini_options]
 # xpass counts as a failure

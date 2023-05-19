@@ -2,6 +2,7 @@
 
 __all__ = ["__version__", "version_tuple", "buzz"]
 
+import pickle
 from collections import defaultdict
 from collections.abc import Iterable, Iterator
 from pathlib import Path
@@ -31,6 +32,8 @@ def buzz(
     :param letters: the available letters from which to make words
     :param minlength: minimum word length allowed
     :param mandatory: if given, these letters must be included
+    :param words: an optional tuple of valid words.
+        Defaults to the system's word dictionary.
     """
     if words is not None and (h := read_cache_hash()) and h == hash(words):
         store = read_preprocessed()
@@ -58,6 +61,7 @@ def default_words() -> tuple[str, ...]:
 
 
 def preprocess(words: tuple[str, ...]) -> Store:
+    """Preprocess words"""
     store = defaultdict(list)
     for word in words:
         store[frozenset(word)].append(word)
@@ -66,8 +70,7 @@ def preprocess(words: tuple[str, ...]) -> Store:
 
 
 def cache_preprocessed(h: int, store: Store) -> None:
-    import pickle
-
+    """Cache the preprocessed words for speed"""
     CACHE.parent.mkdir(parents=True, exist_ok=True)
     with open(CACHE, "xb") as f:
         pickle.dump(store, f)
@@ -77,12 +80,12 @@ def cache_preprocessed(h: int, store: Store) -> None:
 
 
 def read_cache_hash() -> int:
+    """Read the cache's hash"""
     with open(CACHE_HASH, "r", encoding="utf-8") as f:
         return int(f.read())
 
 
 def read_preprocessed() -> Store:
-    import pickle
-
+    """Read the cache's preprocessed words"""
     with open(CACHE, "rb") as f:
         return pickle.load(f)

@@ -33,7 +33,7 @@ jobs:
         uses: pr-annotators/mypy-pr-annotator@v1.0.0
       - name: run mypy
         # the PR annotator regex does not catch "file.py:29:1:"
-        run: mypy . --hide-column-numbers
+        run: mypy . --hide-column-numbers --exclude build/
   pytest:
     name: pytest
     runs-on: ubuntu-latest

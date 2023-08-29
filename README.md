@@ -7,7 +7,7 @@ Pinky promise.
 To see what words can be made with the set of letters `yaehlpt` that contain `y`, run it!
 
 ```console
-% python -m buzzoff -m y yaehlpt
+% python -m buzz off -m y yaehlpt
 allay
 alley
 ally
@@ -16,4 +16,4 @@ ally
 
 ## Installation
 
-Install this project with `python -m pip install buzzoff`.
+Install this project with `python -m pip install buzz`.

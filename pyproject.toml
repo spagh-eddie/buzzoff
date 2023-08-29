@@ -7,10 +7,11 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "buzzoff"
+name = "buzz"
 requires-python = ">=3.7"  # for sorted dicts
 dependencies = [
     "click",
+    "numpy",
 ]
 dynamic = ["version"]
 
@@ -24,7 +25,7 @@ dev = [
 ]
 
 [tool.setuptools_scm]
-write_to = "src/buzzoff/_version.py"
+write_to = "src/buzz/_version.py"
 
 [tool.black]
 target-version = ["py310"]
@@ -74,7 +75,7 @@ suggestion-mode = "yes"
 # Allow loading of arbitrary C extensions. Extensions are imported into the
 # active Python interpreter and may run arbitrary code.
 unsafe-load-any-extension = "no"
-ignore-paths = ["src/buzzoff/_version.py"]
+ignore-paths = ["src/buzz/_version.py"]
 load-plugins = [
     "pylint.extensions.broad_try_clause",
     "pylint.extensions.check_elif",

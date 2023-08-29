@@ -8,6 +8,8 @@ from collections.abc import Iterable, Iterator
 from pathlib import Path
 from typing import TypeAlias
 
+from .common import default_words
+
 Store: TypeAlias = dict[frozenset[str], list[str]]
 CACHE = Path("~/.buzzoff/preprocessed.txt").expanduser()
 CACHE_HASH = Path("~/.buzzoff/hash.txt").expanduser()
@@ -45,12 +47,6 @@ def buzz(
         if not word_letters.issubset(s):
             continue
         yield from filter(lambda w: all(f(w) for f in filters), possibilities)
-
-
-def default_words() -> tuple[str, ...]:
-    """Default words if not provided"""
-    with open("/usr/share/dict/words", "r", encoding="utf-8") as f:
-        return tuple(f.read().splitlines())
 
 
 def preprocess(words: tuple[str, ...]) -> Store:

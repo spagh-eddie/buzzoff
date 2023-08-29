@@ -8,7 +8,7 @@ def run(*args: str) -> list[str]:
     """Return the words output by running the CLI with arguments ``args``"""
     return (
         subprocess.run(
-            [sys.executable, "-m", "buzzoff", "buzzoff", *args],
+            [sys.executable, "-m", "buzz", "off", *args],
             capture_output=True,
             check=True,
         )

@@ -49,9 +49,10 @@ def buzz(
         yield from filter(lambda w: all(f(w) for f in filters), possibilities)
 
 
-def preprocess(words: tuple[str, ...]) -> Store:
+def preprocess(words: Iterable[str]) -> Store:
     """Preprocess words"""
     store = defaultdict(list)
+    words = list(sorted(words))
     for word in words:
         store[frozenset(word)].append(word)
     cache_preprocessed(hash(words), store)

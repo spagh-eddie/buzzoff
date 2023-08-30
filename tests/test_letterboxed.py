@@ -46,9 +46,9 @@ def test_simple() -> None:
     assert ("hello,", "world!") not in solutions
     assert ("brawls", "sousaphone") in solutions
 
-    solutions = run("hesopwablurn")
-    assert "hello, world!" not in solutions
-    assert "brawls sousaphone" in solutions
+    out = run("hesopwablurn")
+    assert "hello, world!" not in out
+    assert "brawls sousaphone" in out
 
 
 def test_intrarepeated_characters() -> None:

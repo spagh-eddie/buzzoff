@@ -52,7 +52,7 @@ def buzz(
 def preprocess(words: Iterable[str]) -> Store:
     """Preprocess words"""
     store = defaultdict(list)
-    words = list(sorted(words))
+    words = tuple(sorted(words))
     for word in words:
         store[frozenset(word)].append(word)
     cache_preprocessed(hash(words), store)

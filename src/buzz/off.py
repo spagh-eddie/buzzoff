@@ -42,7 +42,7 @@ def buzz(
     s = set(letters)
     filters = [lambda w: len(w) >= minlength, s.issuperset]
     if mandatory:
-        filters.insert(0, lambda w: all(c in w for c in mandatory))  # type: ignore[union-attr]
+        filters.insert(0, lambda w: all(c in w for c in mandatory))
     for word_letters, possibilities in store.items():
         if not word_letters.issubset(s):
             continue

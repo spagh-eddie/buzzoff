@@ -8,12 +8,29 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "buzz"
-requires-python = ">=3.7"  # for sorted dicts
+authors = [
+  {name = "Eddie Darling", email = "darling@berkeley.edu"},
+]
+maintainers = [
+  {name = "Eddie Darling", email = "darling@berkeley.edu"},
+]
+description = "Word games"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"  # for match-case
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Operating System :: OS Independent",
+]
 dependencies = [
     "click",
-    "numpy",
 ]
 dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/spagh-eddie/buzzoff"
 
 [project.optional-dependencies]
 dev = [

@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=46.4",  # for "attr:" directive
+    "setuptools>=82.0.1",  # for "attr:" directive
     "setuptools_scm[toml]>=6.2",
     "wheel",
 ]
